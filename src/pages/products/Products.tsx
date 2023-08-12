@@ -29,6 +29,10 @@ const Products = () => {
 
   return (
     <Layout>
+      <div className="pt-3 pb-2 mb-3 border-bottom">
+        <Button href={'/products/create'} variant="contained" color="primary">Add</Button>
+      </div>
+
       <Table>
         <TableHead>
             <TableRow>
