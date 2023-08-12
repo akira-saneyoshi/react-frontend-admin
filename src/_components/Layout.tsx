@@ -3,9 +3,11 @@ import Menu from './Menu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import { User } from '../models/user';
 
 const Layout = (props: any) => {
   const [redirect, setRedirect] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     (
@@ -13,7 +15,7 @@ const Layout = (props: any) => {
         try {
           const {data} = await axios.get('user');
 
-          console.log(data);
+          setUser(data);
         } catch (e) {
           setRedirect(true);
         }
@@ -28,7 +30,7 @@ const Layout = (props: any) => {
   return (
     <div>
 
-      <Nav />
+      <Nav user={user}/>
 
       <div className="container-fluid">
         <div className="row">
