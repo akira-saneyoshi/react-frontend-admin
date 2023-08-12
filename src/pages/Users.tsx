@@ -3,6 +3,7 @@ import Layout from "../_components/Layout";
 import axios from "axios";
 import { User } from "../models/user";
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -45,7 +46,13 @@ const Users = () => {
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.first_name} {user.last_name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell></TableCell>
+                <TableCell>
+                  <Button variant="contained" color="primary"
+                    href={`users/${user.id}/links`}
+                  >
+                    View
+                  </Button>
+                </TableCell>
               </TableRow>
             )
           })}
