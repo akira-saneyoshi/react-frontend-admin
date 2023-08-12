@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Users from './pages/Users';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { RedirectToUsers } from './_components/RedirectToUsers';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path={'/'} element={<Users />} />
+          <Route path={'/'} element={<RedirectToUsers />} />
+          <Route path={'/users'} element={<Users />} />
           <Route path={'/login'} element={<Login />} />
           <Route path={'/register'} element={<Register />} />
         </Routes>
