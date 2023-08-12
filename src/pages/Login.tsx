@@ -14,7 +14,7 @@ const Login = () => {
     await axios.post('login', {
       email: email,
       password: password
-    }, {withCredentials: true});
+    });
 
     setRedirect(true);
   }
