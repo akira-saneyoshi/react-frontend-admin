@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 import Layout from "../_components/Layout";
 import axios from "axios";
 import { User } from "../models/user";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TablePagination,
+  TableRow
+} from "@mui/material";
 
 const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [page, setPage] = useState(0);
+  const perPage = 10;
 
   useEffect(() => {
     (
@@ -29,7 +39,7 @@ const Users = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map(user => {
+          {users.slice(page * perPage, (page + 1) * perPage).map(user => {
             return (
               <TableRow key={user.id}>
                 <TableCell>{user.id}</TableCell>
@@ -40,6 +50,15 @@ const Users = () => {
             )
           })}
         </TableBody>
+        <TableFooter>
+          <TablePagination
+            count={users.length}
+            page={page}
+            onPageChange={(e, newPage) => setPage(newPage)}
+            rowsPerPage={perPage}
+            rowsPerPageOptions={[]}
+          />
+        </TableFooter>
       </Table>
     </Layout>
   );
